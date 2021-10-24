@@ -1,0 +1,336 @@
+/* FONTS */
+@font-face {
+  font-family: sf-pro-display-light;
+  src: url(fonts/SF-Pro-Display-Light.otf)
+}
+@font-face {
+  font-family: sf-pro-display-bold;
+  src: url(fonts/SF-Pro-Display-Bold.otf)
+}
+@font-face {
+  font-family: sf-pro-display-medium;
+  src: url(fonts/SF-Pro-Display-Medium.otf)
+}
+@font-face {
+  font-family: sf-pro-display-regular;
+  src: url(fonts/SF-Pro-Display-Regular.otf)
+}
+/* END FONTS */
+:root {
+  --main: #38004D;
+  --gray: #2D2D2D;
+}
+
+*, *::before, *::after {
+  outline: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'sf-pro-display-light', sans-serif;
+}
+
+/* HEADER */
+header {
+  height: 141px;
+}
+header>nav {
+  float: left;
+}
+header>nav>ul {
+  list-style: none;
+  margin: 26px 42px;
+}
+header>nav>ul>li {
+  display: inline-block;
+  margin: 32px 33px;
+  font-size: 20px;
+  position: relative;
+}
+header>nav>ul>li.active>a {
+  color: var(--main);
+}
+header>nav>ul>li.active::after {
+  width: 25%;
+}
+header>nav>ul>li:hover::after {
+  width: 25%;
+}
+header>nav>ul>li::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 4px;
+  background: var(--main);
+  position: absolute;
+  bottom: -7px;
+  left: 41%;
+  transition: width .4s ease;
+  border-radius: 100px;
+}
+header>nav>ul>li>a {
+  text-decoration: none;
+  color: var(--gray);
+  transition: .2s ease;
+}
+header>nav>ul>li>a:hover {
+  color: var(--main);
+}
+header>#lang {
+  float: right;
+  margin: 49px 77px;
+  box-shadow: 0 2px 7px #cccccc69;
+  padding: 12px 32px;
+  color: var(--gray);
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+}
+header>#lang>span {
+  margin-left: 48px;
+}
+header>#lang>img {
+  display: inline-block;
+  width: 29px;
+  position: absolute;
+  top: 7px;
+}
+/* END HEADER */
+
+/* HOME */
+section.home-top {
+  position: relative;
+  height: 61vh;
+}
+section>.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24vh;
+}
+section>.top>.right>h1 {
+  color: var(--main);
+  font-size: 120px;
+  font-family: "sf-pro-display-bold", sans-serif;
+}
+section>.top>.right>h4 {
+  font-family: "sf-pro-display-bold", sans-serif;
+  color: var(--gray);
+  font-size: 40px;
+}
+section>.bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+section>.bottom>.scroll-down {
+  margin: 27px 58px;
+}
+section>.bottom>.scroll-down>.mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--gray);
+  border-radius: 22px;
+  position: relative;
+  display: inline-block;
+}
+section>.bottom>.scroll-down>.mouse>.button {
+  width: 6px;
+  height: 9px;
+  background: var(--gray);
+  border-radius: 100px;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  animation: mouse-scrolling-down 1.4s infinite;
+}
+section>.bottom>.scroll-down>p {
+  display: inline-block;
+  position: relative;
+  top: -14px;
+  left: 20px;
+  color: var(--gray);
+}
+section>.bottom>a>.icon-github {
+  width: 40px;
+  height: 40px;
+  background: url(images/icons/github.svg);
+  float: right;
+  margin-top: -68px;
+  margin-right: 46px;
+  cursor: pointer;
+}
+
+.home-about {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 21vh;
+}
+.home-about>.right {
+  margin-right: 48vh;
+}
+.home-title {
+  font-size: 60px;
+  color: var(--gray);
+  font-family: 'sf-pro-display-medium', sans-serif;
+  font-weight: 100;
+}
+.home-title>span {
+  color: var(--main);
+}
+.home-about>.right>p {
+  color: #535353;
+  font-size: 20px;
+  margin: 10px 31px;
+}
+.home-about>.left>ul>li {
+  display: inline-block;
+  margin: 0 36px;
+  cursor: pointer;
+  position: relative;
+}
+.home-about>.left>ul>li>img {
+  width: 85px;
+}
+.home-about>.left>ul>li>.brand {
+  position: absolute;
+  box-shadow: 0 0 6px #b6b6b642;
+  border-radius: 10px;
+  padding: 18px 33px;
+  background: white;
+  cursor: unset;
+  width: 32vh;
+  z-index: 1;
+  display: none;
+  animation: .4s modal-open alternate;
+  margin-top: 30px;
+}
+.home-about>.left>ul>li>.brand>h1 {
+  font-family: "sf-pro-display-bold", sans-serif;
+  font-size: 31px;
+  margin-bottom: 11px;
+}
+.home-about>.left>ul>li>.brand>p {
+  color: var(--gray);
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.home-about>.left>ul>li>.brand>p>.html-pourcent {
+  color: #fc9c8c;
+}
+.home-about>.left>ul>li>.brand>p>.javascript-pourcent {
+  color: #ffeb3b;
+}
+.home-about>.left>ul>li>.brand>ul {
+  list-style: none;
+  margin: 14px 0;
+}
+.home-about>.left>ul>li>.brand>ul>li {
+  padding: 10px 22px;
+  border-radius: 100px;
+  width: max-content;
+  display: inline-block;
+  margin-right: 11px;
+  font-family: "sf-pro-display-medium", sans-serif;
+}
+.home-about>.left>ul>li>.brand>ul>li.nodejs-theme {
+  background: #b5ffc44a;
+}
+.home-about>.left>ul>li>.brand>ul>li.css-theme {
+  background: #e3f9ff7d;
+}
+.services>.services-title {
+  text-align: center;
+  margin-top: 19vh;
+}
+.services>.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 80px 0;
+}
+.services>.services-list>.service {
+  box-shadow: 0 3px 6px #b8b8b840;
+  padding: 21px 31px;
+  border-radius: 25px;
+  width: 30vh;
+  text-align: center;
+  margin: 0 39px;
+}
+.services>.services-list>.service>img {
+  width: 96px;
+}
+.services>.services-list>.service>h1 {
+  font-family: "sf-pro-display-bold", sans-serif;
+  color: var(--main);
+  font-size: 18px;
+  margin: 15px 0;
+}
+.services>.services-list>.service>p {
+  color: #585858;
+  font-size: 16px;
+}
+.services>.services-list>.service>button {
+  font-family: "sf-pro-display-bold", sans-serif;
+  color: white;
+  background: var(--main);
+  padding: 11px 28px;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 20px 0;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.services>.services-list>.service>button:hover {
+  box-shadow: 0 3px 6px #b8b8b840;
+}
+
+@keyframes mouse-scrolling-down {
+  from {
+    opacity: 1;
+    top: 6px;
+  }
+  to {
+    opacity: 0;
+    top: 20px;
+  }
+}
+
+@keyframes modal-open {
+  from {
+    transform: perspective(400px) rotateX(
+            54deg);
+  }
+  to {
+    transform: perspective(400px) rotateX(
+            0);
+  }
+}
+@keyframes modal-close {
+  from {
+    transform: perspective(400px) rotateX(
+            0);
+  }
+  to {
+    transform: perspective(400px) rotateX(
+            54deg);
+  }
+}
+/* END HOME */
+
+/* FOOTER */
+footer {
+  color: var(--main);
+  text-align: center;
+  font-size: 20px;
+  margin: 45px 0;
+}
+footer>a {
+  font-family: "sf-pro-display-medium", sans-serif;
+}
+/* END FOOTER */

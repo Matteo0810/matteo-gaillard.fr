@@ -1,0 +1,24 @@
+{
+    "header": {
+        "home": "Accueil",
+        "projects": "Projets",
+        "contact": "Me contacter",
+        "order": "Commander"
+    },
+    "lang": {
+        "fr-FR": "Français",
+        "en-EN": "Anglais"
+    },
+    "home":  {
+        "right": {
+            "job": "Développeur web",
+            "description": "I'm mattéo, blablablabla, dzqdqdqzd dqdqzdqzd"
+        }
+    },
+    "contact": {
+        "title": "Me contacter",
+        "email": "Votre email",
+        "message": "Votre message",
+        "send": "Envoyer"
+    }
+}

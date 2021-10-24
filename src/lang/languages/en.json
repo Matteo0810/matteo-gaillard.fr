@@ -1,0 +1,18 @@
+{
+    "header": {
+        "home": "Home",
+        "projects": "Projects",
+        "contact": "Contact me",
+        "order": "Order"
+    },
+    "lang": {
+        "fr-FR": "French",
+        "en-EN": "English"
+    },
+    "home":  {
+        "right": {
+            "job": "Web developer",
+            "description": "I'm mattéo, blablablabla, dzqdqdqzd dqdqzdqzd"
+        }
+    }
+}
