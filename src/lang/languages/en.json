@@ -1,18 +1,63 @@
 {
     "header": {
-        "home": "Home",
-        "projects": "Projects",
-        "contact": "Contact me",
-        "order": "Order"
+        "home": "Accueil",
+        "about": "À Propos",
+        "services": "Services",
+        "portfolio": "Portefolio"
     },
     "lang": {
-        "fr-FR": "French",
-        "en-EN": "English"
+        "fr-FR": "Français",
+        "en-EN": "Anglais"
     },
-    "home":  {
-        "right": {
-            "job": "Web developer",
-            "description": "I'm mattéo, blablablabla, dzqdqdqzd dqdqzdqzd"
+    "home": {
+        "top": {
+            "title_h1": "Je suis Mattéo",
+            "title_h4": "Développeur web fullstack"
+        },
+        "scrolldown": "descendre",
+        "about": {
+            "title": "À Propos",
+            "description": "Lorem bidule"
+        },
+        "skills": {
+            "nodejs": [
+                "C'est avec ceci que je réalise mes sites internet :-)",
+                "Voici les frameworks que j'utilise",
+                ["ReactJS", "ExpressJS"]
+            ],
+            "css": [
+                "Voici les processeurs en css que j'aime utiliser",
+                ["SCSS"]
+            ],
+            "html": [
+                "Si je devais dire mon niveau de connaissance en HTML",
+                "Je dirais",
+                "85% - 90%"
+            ],
+            "javascript": [
+                "J'adore utiliser javascript !",
+                "Si je devais donner mon niveau de connaissance en JavaScript",
+                "Je dirais",
+                "89%"
+            ]
+        },
+        "services": {
+            "title":" Services",
+            "complete_website": {
+                "title": "Site complet",
+                "description": [
+                    "Je vais créer un site complet",
+                    "juste pour vous"
+                ]
+            },
+            "showcase_website": {
+                "title": "Site vitrine",
+                "description": [
+                    "Je vais créer un site vitrine",
+                    "juste pour vous"
+                ]
+            },
+            "see_more": "Voir plus"
         }
     }
 }

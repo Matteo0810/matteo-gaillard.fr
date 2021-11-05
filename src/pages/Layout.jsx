@@ -1,10 +1,12 @@
 import { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { getUserLang } from '../lang/language';
+import { getUserLang, getDefaultLang } from '../lang/language';
 
 //routes
 import Home from './Home';
+import Order from './order/Order';
 
 export default class Layout extends Component {
 
@@ -12,55 +14,48 @@ export default class Layout extends Component {
     super();
 
     this.state = {
-      //userLang: getUserLang(),
+      userLang: getUserLang(),
       opened: false
     }
 
-    //this.handleLangDropdown = this.handleLangDropdown.bind(this);
-    //this.changLang = this.changLang.bind(this);
+    this._openSelector = this._openSelector.bind(this);
+    this._changLang = this._changLang.bind(this);
   }
 
-  componentDidMount() {
-    this.parallaxAnimation = this.parallaxAnimation.bind(this);
-
-    window.addEventListener('scroll', this.parallaxAnimation)
+  _openSelector() {
+    const selector = document.querySelector('.lang-selector')
+    if(!this.state.opened) 
+      selector.style.display = "block"
+    else {
+      selector.style.animation = ".4s selector-close alternate";
+      setTimeout(() => {
+          selector.setAttribute('style', selector.getAttribute('style').replace(/animation: (.*)/g, ''))
+          selector.style.display = "none"
+      }, 3.6e2)
+    }
+    this.setState({
+      opened: !this.state.opened
+    })
   }
 
-  parallaxAnimation() {
-    const { scrollY } = window
-    let titleH1 = document.getElementById('animation-title-h1'),
-        titleH4 = document.getElementById('animation-title-h4')
-
-    titleH1.style.fontSize = `${120 + (scrollY*0.10)}px`;
-    titleH4.style.fontSize = `${40 + (scrollY*0.05)}px`;
-  }
-
-  /*handleLangDropdown() {
-    let arrow = document.querySelector('header>nav>ul>li#lang>.arrow>i');
-
-    this.setState({ opened: !this.state.opened })
-
-    if(!this.state.opened) arrow.classList.add('active');
-    else arrow.classList.remove('active');
-
-    document.getElementById('lang-nav').style.display = !this.state.opened ? "block" : "none";
-  }
-
-  changLang = ({ target }) => {
+  _changLang = ({ target }) => {
+    const selectedLang = target.getAttribute('lang')
+    if (selectedLang === getDefaultLang())
+      return
     if(localStorage['userLang'])
-      localStorage['userLang'] = target.getAttribute('lang');
+      localStorage['userLang'] = selectedLang
+
 
     this.setState({
       userLang: getUserLang()
     })
     
     window.location.reload();
-  }*/
+  }
 
   render() {
-    /*const { header, lang } = this.state.userLang,
-      langName = lang[localStorage['userLang']],
-      userLang = localStorage['userLang']*/
+    const { header, lang } = this.state.userLang,
+      userLang = getDefaultLang()
 
     return (
       <div>
@@ -69,23 +64,36 @@ export default class Layout extends Component {
             <nav>
               <ul>
                 <li className="active">
-                  <a href="#">Home</a>
+                  <Link to="/">{header.home}</Link>
                 </li>
                 <li>
-                  <a href="#">About me</a>
+                  <Link to="/#about">{header.about}</Link>
                 </li>
                 <li>
-                  <a href="#">Portfolio</a>
+                  <Link to="/#services">{header.services}</Link>
                 </li>
                 <li>
-                  <a href="#">Services</a>
+                  <Link to="/#portfolio">{header.portfolio}</Link>
                 </li>
               </ul>
             </nav>
 
             <div id="lang">
-              <img src={require('../assets/images/icons/uk.svg').default} alt="Flag" />
-              <span>English</span>
+              <div onClick={this._openSelector} className="selected-lang">
+                <img src={require(`../assets/images/icons/lang/${userLang}.svg`).default} alt="Flag" />
+                <span>{lang[userLang]}</span>
+              </div>
+
+              <ul className="lang-selector">
+                <li lang="fr-FR" onClick={this._changLang} className={userLang === "fr-FR" ? 'selected' : ''}>
+                  <img src={require('../assets/images/icons/lang/fr-FR.svg').default} alt="Flag" />
+                  <span>{lang['fr-FR']}</span>
+                </li>
+                <li lang="en-EN" onClick={this._changLang} className={userLang === "en-EN" ? 'selected' : ''}>
+                  <img src={require('../assets/images/icons/lang/en-EN.svg').default} alt="Flag" />
+                  <span>{lang['en-EN']}</span>
+                </li>
+              </ul> 
             </div>
           </header>
 
@@ -95,6 +103,7 @@ export default class Layout extends Component {
                     <CSSTransition key={location.key} timeout={450} classNames="fade">
                         <Switch location={location}>
                           <Route exact path="/" component={Home} />
+                          <Route path="/order" component={Order} />
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>
@@ -103,22 +112,10 @@ export default class Layout extends Component {
         </Router>
 
         <footer>
-          &copy; Mattéo | <a href="https://github.com/Matteo0810">My github</a>
+          &copy; Mattéo
         </footer>
       </div>
     );
   }
 
 }
-
-/*<li id="lang" onClick={this.handleLangDropdown}>
-  {langName} <span className="arrow"><i className="fas fa-chevron-up"></i></span>
-
-  <nav id="lang-nav">
-    <ul>
-      <li lang="fr-FR" onClick={this.changLang}><img src={require('../assets/images/icons/france.svg').default} alt="Flag" /> {lang['fr-FR']} {userLang === "fr-FR" ? <span><i className="far fa-check-circle"></i></span> : ''}</li>
-      <li lang="en-EN" onClick={this.changLang}><img src={require('../assets/images/icons/uk.svg').default} alt="Flag" /> {lang['en-EN']} {userLang === "en-EN" ? <span><i className="far fa-check-circle"></i></span> : ''}</li>
-    </ul>
-  </nav>
-</li>*/
-/*<Route exact path="/" component={Home} />*/
